@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ansh - Home</title>
+  <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+      background: #ffffff;
+    }
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+    .typing {
+      font-size: 20px;
+      color: #0066cc;
+      font-weight: bold;
+      height: 30px;
+    }
+    .desc {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="education.html">Education</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Hello, I'm <span style="color:#0066cc;">Ansh</span></h1>
+    <div class="typing" id="typingText"></div>
+    <div class="desc">
+      Aspiring Electrical Engineer passionate about technology, innovation, and real-world projects.
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Ansh. All rights reserved.
+  </footer>
+
+  <script>
+    const phrases = [
+      "Diploma Student in Electrical Engineering",
+      "Tech Enthusiast",
+      "Arduino Project Developer"
+    ];
+    let i = 0, j = 0, current = '', isDeleting = false;
+
+    function type() {
+      if (i < phrases.length) {
+        if (!isDeleting && j <= phrases[i].length) {
+          current = phrases[i].substring(0, j++);
+        } else if (isDeleting && j >= 0) {
+          current = phrases[i].substring(0, j--);
+        }
+
+        document.getElementById("typingText").textContent = current;
+
+        if (!isDeleting && j === phrases[i].length) {
+          isDeleting = true;
+          setTimeout(type, 1000); // Pause before deleting
+          return;
+        }
+        if (isDeleting && j === 0) {
+          isDeleting = false;
+          i = (i + 1) % phrases.length;
+        }
+
+        setTimeout(type, isDeleting ? 50 : 100);
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
